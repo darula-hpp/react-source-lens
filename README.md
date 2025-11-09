@@ -69,6 +69,68 @@ React Source Lens uses React's internal fiber nodes and debug information to loc
 - Components have debug source information (enabled by default in Create React App and Vite)
 - The Babel plugin is configured to add source attributes to JSX elements
 
+### Next.js Compatibility
+
+**⚠️ Next.js requires additional configuration** because it uses its own webpack and babel setup.
+
+To use React Source Lens with Next.js:
+
+1. **Install the babel plugin** in your Next.js project:
+   ```bash
+   npm install react-source-lens
+   ```
+
+2. **Configure Next.js to use the babel plugin** by creating/editing `next.config.js`:
+   ```javascript
+   module.exports = {
+     experimental: {
+       swcPlugins: [] // Disable SWC to use Babel
+     },
+     webpack: (config, { dev }) => {
+       if (dev) {
+         config.module.rules.push({
+           test: /\.(js|jsx|ts|tsx)$/,
+           use: {
+             loader: 'babel-loader',
+             options: {
+               plugins: [
+                 'react-source-lens/babel-plugin'
+               ],
+               presets: [
+                 '@babel/preset-env',
+                 ['@babel/preset-react', { development: true }],
+                 '@babel/preset-typescript'
+               ]
+             }
+           },
+           exclude: /node_modules/
+         });
+       }
+       return config;
+     }
+   };
+   ```
+
+3. **Use the hook in your app** (e.g., in `_app.js`):
+   ```jsx
+   import { useReactSourceLens } from 'react-source-lens';
+
+   function MyApp({ Component, pageProps }) {
+     // Only in development
+     if (process.env.NODE_ENV === 'development') {
+       useReactSourceLens({
+         projectRoot: '/absolute/path/to/your/nextjs/project'
+       });
+     }
+
+     return <Component {...pageProps} />;
+   }
+
+   export default MyApp;
+   ```
+
+**Note**: Next.js uses SWC by default, which doesn't support custom babel plugins. The configuration above switches to Babel for development builds.
+
 ## API
 
 ### `useReactSourceLens(options?)`
