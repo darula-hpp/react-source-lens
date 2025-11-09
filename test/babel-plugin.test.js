@@ -93,4 +93,38 @@ describe('babel-source-plugin', () => {
     expect(result.code).toContain('"data-source-file": "src/components/Component.jsx"');
     expect(result.code).toContain('"data-source-line": "3"');
   });
+
+  it('should extract relative path from /app/ directory (Next.js App Router)', () => {
+    const code = `
+      function MyComponent() {
+        return <div>Hello World</div>;
+      }
+    `;
+
+    const result = transform(code, {
+      plugins: [babelPlugin],
+      presets: ['@babel/preset-react'],
+      filename: '/project/app/components/Button.tsx',
+    });
+
+    expect(result.code).toContain('"data-source-file": "app/components/Button.tsx"');
+    expect(result.code).toContain('"data-source-line": "3"');
+  });
+
+  it('should extract relative path from /components/ directory', () => {
+    const code = `
+      function MyComponent() {
+        return <div>Hello World</div>;
+      }
+    `;
+
+    const result = transform(code, {
+      plugins: [babelPlugin],
+      presets: ['@babel/preset-react'],
+      filename: '/project/components/Button.tsx',
+    });
+
+    expect(result.code).toContain('"data-source-file": "components/Button.tsx"');
+    expect(result.code).toContain('"data-source-line": "3"');
+  });
 });

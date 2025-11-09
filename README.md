@@ -71,80 +71,18 @@ React Source Lens uses React's internal fiber nodes and debug information to loc
 
 ### Next.js Compatibility
 
-**⚠️ Next.js requires additional configuration** because it uses its own webpack and babel setup.
+**Next.js uses SWC by default**, which doesn't support custom Babel plugins. To use React Source Lens with Next.js, you need to configure it to use Babel instead.
 
-To use React Source Lens with Next.js:
+1. **Create a `.babelrc` file** in your Next.js project root:
 
-1. **Install the package and required dependencies** in your Next.js project:
-   ```bash
-   npm install react-source-lens babel-loader @babel/core @babel/preset-env @babel/preset-typescript
+   ```json
+   {
+     "presets": ["next/babel"],
+     "plugins": ["react-source-lens/babel-plugin"]
+   }
    ```
 
-2. **Configure Next.js to use the babel plugin** by creating/editing `next.config.js` (CommonJS) or `next.config.mjs` (ESM):
-
-   **For CommonJS (`next.config.js`):**
-   ```javascript
-   module.exports = {
-     experimental: {
-       swcPlugins: [] // Disable SWC to use Babel
-     },
-     webpack: (config, { dev }) => {
-       if (dev) {
-         config.module.rules.push({
-           test: /\.(js|jsx|ts|tsx)$/,
-           use: {
-             loader: 'babel-loader',
-             options: {
-               plugins: [
-                 'react-source-lens/babel-plugin'
-               ],
-               presets: [
-                 '@babel/preset-env',
-                 ['@babel/preset-react', { development: true }],
-                 '@babel/preset-typescript'
-               ]
-             }
-           },
-           exclude: /node_modules/
-         });
-       }
-       return config;
-     }
-   };
-   ```
-
-   **For ESM (`next.config.mjs`):**
-   ```javascript
-   export default {
-     experimental: {
-       swcPlugins: [] // Disable SWC to use Babel
-     },
-     webpack: (config, { dev }) => {
-       if (dev) {
-         config.module.rules.push({
-           test: /\.(js|jsx|ts|tsx)$/,
-           use: {
-             loader: 'babel-loader',
-             options: {
-               plugins: [
-                 'react-source-lens/babel-plugin'
-               ],
-               presets: [
-                 '@babel/preset-env',
-                 ['@babel/preset-react', { development: true }],
-                 '@babel/preset-typescript'
-               ]
-             }
-           },
-           exclude: /node_modules/
-         });
-       }
-       return config;
-     }
-   };
-   ```
-
-3. **Use the hook in your app** (e.g., in `_app.js`):
+2. **Use the hook in your app** (e.g., in `_app.js` or `_app.tsx`):
    ```jsx
    import { useReactSourceLens } from 'react-source-lens';
 
