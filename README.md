@@ -82,22 +82,43 @@ React Source Lens uses React's internal fiber nodes and debug information to loc
    }
    ```
 
-2. **Use the hook in your app** (e.g., in `_app.js` or `_app.tsx`):
-   ```jsx
+2. **Create a Client Component** to initialize React Source Lens:
+   ```tsx
+   // components/ReactSourceLensProvider.tsx
+   'use client';
+
    import { useReactSourceLens } from 'react-source-lens';
 
-   function MyApp({ Component, pageProps }) {
-     // Only in development
-     if (process.env.NODE_ENV === 'development') {
-       useReactSourceLens({
-         projectRoot: '/absolute/path/to/your/nextjs/project'
-       });
-     }
+   export function ReactSourceLensProvider() {
+     useReactSourceLens({
+       projectRoot: '/absolute/path/to/your/nextjs/project'
+     });
 
-     return <Component {...pageProps} />;
+     return null;
    }
+   ```
 
-   export default MyApp;
+3. **Add the provider to your root layout** (`app/layout.tsx`):
+   ```tsx
+   import { ReactSourceLensProvider } from '@/components/ReactSourceLensProvider';
+
+   export default function RootLayout({
+     children,
+   }: {
+     children: React.ReactNode;
+   }) {
+     return (
+       <html lang="en">
+         <body>
+           <ReactSourceLensProvider />
+           {children}
+         </body>
+       </html>
+     );
+   }
+   ```
+
+**Note**: The Babel plugin now automatically detects Next.js App Router directory structures (`app/` directory) and provides correct relative paths for source code inspection.
 ### 4. Run tests
 
 ```bash
