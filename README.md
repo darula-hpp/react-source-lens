@@ -141,17 +141,42 @@ A React hook that enables source code inspection for the current React tree. Cal
 #### Options
 
 - `projectRoot?: string` - Absolute path to your project root directory. Required for VS Code integration to work properly. Example: `'/Users/username/projects/my-app'`
+- `editor?: string` - Editor to open files in. Supports: `'vscode'`, `'webstorm'`, `'intellij'`, `'atom'`, `'sublime'`, `'cursor'`, `'windsurf'`. Defaults to auto-detection or VS Code.
+
+#### Editor Auto-Detection
+
+React Source Lens automatically detects your editor by checking:
+1. `REACT_EDITOR` environment variable
+2. `EDITOR` environment variable  
+3. Falls back to VS Code if no editor is detected
+
+#### Supported Editors
+
+| Editor | Configuration Value | URL Scheme |
+|--------|---------------------|------------|
+| VS Code | `'vscode'` or `'code'` | `vscode://file/path:line` |
+| WebStorm/IntelliJ | `'webstorm'` or `'intellij'` | `jetbrains://idea/navigate/...` |
+| Atom | `'atom'` | `atom://core/open/file?...` |
+| Sublime Text | `'sublime'` | `subl://open?url=file://...` |
+| Cursor | `'cursor'` | `cursor://file/path:line` |
+| **Windsurf** | `'windsurf'` | `windsurf://file/path:line` |
 
 #### Example
 
 ```jsx
-// Without VS Code integration
-useReactSourceLens();
-
-// With VS Code integration
+// Auto-detect editor (recommended)
 useReactSourceLens({
   projectRoot: '/Users/username/projects/my-app'
 });
+
+// Explicitly specify editor
+useReactSourceLens({
+  projectRoot: '/Users/username/projects/my-app',
+  editor: 'windsurf' // or 'vscode', 'webstorm', 'atom', 'sublime', 'cursor'
+});
+
+// Minimal setup (auto-detects everything)
+useReactSourceLens();
 ```
 
 ## License

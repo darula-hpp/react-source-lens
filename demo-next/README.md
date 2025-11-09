@@ -1,24 +1,53 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## React Source Lens - Next.js Demo
 
-First, run the development server:
+This demo shows how to use React Source Lens with Next.js.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Setup
+
+1. Make sure you have Node.js installed
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+
+## Usage
+
+1. Open http://localhost:3000 in your browser
+2. Hover over any component (cards, buttons)
+3. Press `Cmd+Shift+O` (Mac) or `Ctrl+Shift+O` (Windows/Linux) to inspect source
+4. A modal will appear showing the component's source location
+
+## Configuration
+
+The key configuration is in `.babelrc`:
+
+```json
+{
+  "presets": ["next/babel"],
+  "plugins": ["react-source-lens/babel-plugin"]
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+And in `components/ReactSourceLensProvider.tsx`:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```tsx
+useReactSourceLens({
+  projectRoot: '/Users/olebogengmbedzi/dev/react-source-lens/demo-next',
+  editor: 'windsurf' // Configure your preferred editor
+});
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Supported Editors
+
+You can configure React Source Lens to open files in your preferred editor:
+- `'vscode'` (default)
+- `'webstorm'` / `'intellij'`
+- `'atom'`
+- `'sublime'`
+- `'cursor'`
+- `'windsurf'` ✨ **(new!)**
+
+Or omit the `editor` option to auto-detect based on your environment variables (`REACT_EDITOR` or `EDITOR`).
 
 ## Learn More
 

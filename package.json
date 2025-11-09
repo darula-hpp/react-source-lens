@@ -1,6 +1,6 @@
 {
   "name": "react-source-lens",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "type": "module",
   "description": "A React development tool that lets you inspect the source code of components by hovering and pressing Cmd+Shift+O",
   "main": "./dist/react-source-lens.cjs.js",
