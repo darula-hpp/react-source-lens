@@ -31,6 +31,7 @@ function App() {
     <div style={{ padding: '20px' }}>
       <h1>React Source Lens Demo</h1>
       <p>Hover over components and press <strong>Cmd+Shift+O</strong> (Mac) or <strong>Ctrl+Shift+O</strong> (Windows/Linux) to see their source location.</p>
+      <p><strong>Toggle overlay:</strong> Press <strong>Cmd+Shift+L</strong> (Mac) or <strong>Ctrl+Shift+L</strong> (Windows/Linux) to show/hide the green overlay.</p>
 
       <InnerTestComponent />
 

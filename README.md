@@ -51,10 +51,10 @@ module.exports = {
 
 ### 3. Usage in development
 
-1. Wrap your app with the hook (only in development mode)
-2. Hover over any React component in your app
-3. Press `Cmd+Shift+O` (Mac) or `Ctrl+Shift+O` (Windows/Linux)
-4. An alert will show the source file and line number of the component
+1. The overlay will be **visible by default** when the hook is active
+2. **Hover** over any React component in your app
+3. **Press** `Cmd+Shift+O` (Mac) or `Ctrl+Shift+O` (Windows/Linux) to see the source location
+4. **Press** `Cmd+Shift+L` (Mac) or `Ctrl+Shift+L` (Windows/Linux) to **toggle the overlay on/off**
 
 ## How it works
 
