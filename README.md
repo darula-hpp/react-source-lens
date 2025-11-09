@@ -75,9 +75,9 @@ React Source Lens uses React's internal fiber nodes and debug information to loc
 
 To use React Source Lens with Next.js:
 
-1. **Install the babel plugin** in your Next.js project:
+1. **Install the package and required dependencies** in your Next.js project:
    ```bash
-   npm install react-source-lens
+   npm install react-source-lens babel-loader @babel/core @babel/preset-env @babel/preset-typescript
    ```
 
 2. **Configure Next.js to use the babel plugin** by creating/editing `next.config.js`:
