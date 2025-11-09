@@ -31,7 +31,11 @@
     "inspection",
     "devtools"
   ],
-  "author": "Olebogeng Mbedzi",
+  "author": "Olebo Mbedzi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darula-hpp/react-source-lens.git"
+  },
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8.0",
