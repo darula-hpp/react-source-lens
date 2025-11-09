@@ -80,9 +80,42 @@ To use React Source Lens with Next.js:
    npm install react-source-lens babel-loader @babel/core @babel/preset-env @babel/preset-typescript
    ```
 
-2. **Configure Next.js to use the babel plugin** by creating/editing `next.config.js`:
+2. **Configure Next.js to use the babel plugin** by creating/editing `next.config.js` (CommonJS) or `next.config.mjs` (ESM):
+
+   **For CommonJS (`next.config.js`):**
    ```javascript
    module.exports = {
+     experimental: {
+       swcPlugins: [] // Disable SWC to use Babel
+     },
+     webpack: (config, { dev }) => {
+       if (dev) {
+         config.module.rules.push({
+           test: /\.(js|jsx|ts|tsx)$/,
+           use: {
+             loader: 'babel-loader',
+             options: {
+               plugins: [
+                 'react-source-lens/babel-plugin'
+               ],
+               presets: [
+                 '@babel/preset-env',
+                 ['@babel/preset-react', { development: true }],
+                 '@babel/preset-typescript'
+               ]
+             }
+           },
+           exclude: /node_modules/
+         });
+       }
+       return config;
+     }
+   };
+   ```
+
+   **For ESM (`next.config.mjs`):**
+   ```javascript
+   export default {
      experimental: {
        swcPlugins: [] // Disable SWC to use Babel
      },
