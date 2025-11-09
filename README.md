@@ -160,11 +160,20 @@ To use React Source Lens with Next.js:
    }
 
    export default MyApp;
-   ```
+### 4. Run tests
 
-**Note**: Next.js uses SWC by default, which doesn't support custom babel plugins. The configuration above switches to Babel for development builds.
+```bash
+# Run tests in watch mode
+npm test
 
-## API
+# Run tests once
+npm run test:run
+
+# Run tests with UI
+npm run test:ui
+```
+
+## How it works
 
 ### `useReactSourceLens(options?)`
 
