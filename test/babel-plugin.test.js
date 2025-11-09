@@ -16,7 +16,7 @@ describe('babel-source-plugin', () => {
       filename: '/test/Component.jsx',
     });
 
-    expect(result.code).toContain('data-source-file="/test/Component.jsx"');
+    expect(result.code).toContain('data-source-file="Component.jsx"');
     expect(result.code).toContain('data-source-line="3"');
   });
 
@@ -33,7 +33,7 @@ describe('babel-source-plugin', () => {
       filename: '/test/Component.tsx',
     });
 
-    expect(result.code).toContain('data-source-file="/test/Component.tsx"');
+    expect(result.code).toContain('data-source-file="Component.tsx"');
     expect(result.code).toContain('data-source-line="3"');
   });
 
@@ -55,7 +55,7 @@ describe('babel-source-plugin', () => {
       filename: '/test/Component.jsx',
     });
 
-    expect(result.code).toContain('data-source-file="/test/Component.jsx"');
+    expect(result.code).toContain('data-source-file="Component.jsx"');
     // Should have line numbers for different elements
     expect(result.code).toMatch(/data-source-line="\d+"/);
   });
@@ -75,5 +75,22 @@ describe('babel-source-plugin', () => {
 
     expect(result.code).not.toContain('data-source-file');
     expect(result.code).not.toContain('data-source-line');
+  });
+
+  it('should extract relative path from /src/ directory', () => {
+    const code = `
+      function MyComponent() {
+        return <div>Hello World</div>;
+      }
+    `;
+
+    const result = transform(code, {
+      plugins: [babelPlugin],
+      presets: ['@babel/preset-react'],
+      filename: '/project/src/components/Component.jsx',
+    });
+
+    expect(result.code).toContain('data-source-file="components/Component.jsx"');
+    expect(result.code).toContain('data-source-line="3"');
   });
 });
