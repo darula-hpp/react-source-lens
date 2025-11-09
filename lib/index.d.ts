@@ -1,1 +1,1 @@
-export declare function useReactSourceLens(): void;
+export declare function useReactSourceLens(options?: { projectRoot?: string }): void;
