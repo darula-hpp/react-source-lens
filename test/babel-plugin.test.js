@@ -16,8 +16,8 @@ describe('babel-source-plugin', () => {
       filename: '/test/Component.jsx',
     });
 
-    expect(result.code).toContain('data-source-file="Component.jsx"');
-    expect(result.code).toContain('data-source-line="3"');
+    expect(result.code).toContain('"data-source-file": "Component.jsx"');
+    expect(result.code).toContain('"data-source-line": "3"');
   });
 
   it('should handle TypeScript files', () => {
@@ -33,8 +33,8 @@ describe('babel-source-plugin', () => {
       filename: '/test/Component.tsx',
     });
 
-    expect(result.code).toContain('data-source-file="Component.tsx"');
-    expect(result.code).toContain('data-source-line="3"');
+    expect(result.code).toContain('"data-source-file": "Component.tsx"');
+    expect(result.code).toContain('"data-source-line": "3"');
   });
 
   it('should handle nested JSX elements', () => {
@@ -55,9 +55,9 @@ describe('babel-source-plugin', () => {
       filename: '/test/Component.jsx',
     });
 
-    expect(result.code).toContain('data-source-file="Component.jsx"');
+    expect(result.code).toContain('"data-source-file": "Component.jsx"');
     // Should have line numbers for different elements
-    expect(result.code).toMatch(/data-source-line="\d+"/);
+    expect(result.code).toMatch(/"data-source-line": "\d+"/);
   });
 
   it('should not add attributes to non-JSX elements', () => {
@@ -90,7 +90,7 @@ describe('babel-source-plugin', () => {
       filename: '/project/src/components/Component.jsx',
     });
 
-    expect(result.code).toContain('data-source-file="components/Component.jsx"');
-    expect(result.code).toContain('data-source-line="3"');
+    expect(result.code).toContain('"data-source-file": "components/Component.jsx"');
+    expect(result.code).toContain('"data-source-line": "3"');
   });
 });
