@@ -8,7 +8,7 @@ export default defineConfig({
       babel: {
         plugins: [
           // Use our local babel plugin
-          [path.resolve(__dirname, '../babel-source-plugin.cjs')]
+          'react-source-lens/babel-plugin'
         ],
         presets: [
           [

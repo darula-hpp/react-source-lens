@@ -31,7 +31,7 @@
     "inspection",
     "devtools"
   ],
-  "author": "Your Name",
+  "author": "Olebogeng Mbedzi",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8.0",
