@@ -90,7 +90,7 @@ describe('babel-source-plugin', () => {
       filename: '/project/src/components/Component.jsx',
     });
 
-    expect(result.code).toContain('"data-source-file": "components/Component.jsx"');
+    expect(result.code).toContain('"data-source-file": "src/components/Component.jsx"');
     expect(result.code).toContain('"data-source-line": "3"');
   });
 });
