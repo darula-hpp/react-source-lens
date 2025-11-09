@@ -12,7 +12,16 @@ module.exports = declare((api) => {
         // Get source info from Babel's source location
         const loc = path.node.loc;
         if (loc && loc.start) {
-          const sourceFile = this.filename.split('/src/')[1] || this.filename.split('/').pop();
+          // Extract relative path starting from src/ directory
+          let sourceFile;
+          const parts = this.filename.split('/src/');
+          if (parts.length > 1) {
+            // Take everything from /src/ onwards, including 'src/'
+            sourceFile = 'src/' + parts[parts.length - 1];
+          } else {
+            // No /src/ found, fallback to filename
+            sourceFile = this.filename.split('/').pop();
+          }
           const sourceLine = loc.start.line.toString();
 
           // Add data attributes to the element
