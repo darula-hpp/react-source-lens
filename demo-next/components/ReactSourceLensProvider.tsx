@@ -1,6 +1,6 @@
 'use client';
 
-import { useReactSourceLens } from 'react-source-lens';
+import { useReactSourceLens } from '../../lib/ReactSourceLens'
 
 export function ReactSourceLensProvider() {
   useReactSourceLens({

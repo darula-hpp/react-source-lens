@@ -1,5 +1,6 @@
 import React from 'react';
-import { useReactSourceLens } from 'react-source-lens';
+// import { useReactSourceLens } from 'react-source-lens';
+import { useReactSourceLens } from '../../lib/ReactSourceLens';
 import TestComponent from './components/TestComponent';
 
 function InnerTestComponent() {
