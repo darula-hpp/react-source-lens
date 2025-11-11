@@ -1,6 +1,8 @@
 # React Source Lens
 
-A React development tool that lets you inspect the source code of components by hovering and pressing `Cmd+Shift+O` (or `Ctrl+Shift+O` on Windows/Linux).
+Instantly locate any React component's source code with a single keystroke. Hover + `Cmd+Shift+O` = your editor opens the exact file and line.
+
+![React Source Lens Demo](./demo-next/preview.gif)
 
 ## Installation
 
