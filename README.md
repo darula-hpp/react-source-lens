@@ -121,7 +121,59 @@ React Source Lens uses React's internal fiber nodes and debug information to loc
    ```
 
 **Note**: The Babel plugin now automatically detects Next.js App Router directory structures (`app/` directory) and provides correct relative paths for source code inspection.
-### 4. Run tests
+
+### Create React App Compatibility
+
+**Create React App (CRA) uses Babel by default but doesn't allow custom Babel plugins** without ejecting. To use React Source Lens with CRA, you need to use CRACO (Create React App Configuration Override).
+
+1. **Install CRACO** (allows custom Babel config without ejecting):
+   ```bash
+   npm install --save-dev @craco/craco
+   ```
+
+2. **Create a `craco.config.js` file** in your CRA project root:
+   ```javascript
+   module.exports = {
+     babel: {
+       plugins: [
+         'react-source-lens/babel-plugin'
+       ]
+     }
+   };
+   ```
+
+3. **Update your `package.json` scripts**:
+   ```json
+   {
+     "scripts": {
+       "start": "craco start",
+       "build": "craco build",
+       "test": "craco test"
+     }
+   }
+   ```
+
+4. **Use React Source Lens in your app**:
+   ```jsx
+   // src/index.js or src/App.js
+   import { useReactSourceLens } from 'react-source-lens';
+
+   function App() {
+     useReactSourceLens({
+       projectRoot: '/absolute/path/to/your/cra/project'
+     });
+
+     return (
+       <div className="App">
+         {/* Your app content */}
+       </div>
+     );
+   }
+   ```
+
+**Note**: The Babel plugin is optional for CRA - React Source Lens works with runtime inspection alone, but the Babel plugin provides better performance by adding source attributes at build time.
+
+## Run Tests
 
 ```bash
 # Run tests in watch mode
