@@ -1,6 +1,6 @@
 # React Source Lens
 
-Instantly locate any React component's source code with a single keystroke. Hover + `Cmd+Shift+O` = your editor opens the exact file and line.
+Instantly locate any React component's source code with a single keystroke. Hover + `Cmd+Shift+O` (Mac) or `Alt+Shift+O` (Windows/Linux) = your editor opens the exact file and line.
 
 ![React Source Lens Demo](./demo-next/preview.gif)
 
@@ -52,7 +52,7 @@ module.exports = {
 
 1. The overlay will be **visible by default** when the hook is active
 2. **Hover** over any React component in your app
-3. **Press** `Cmd+Shift+O` (Mac) or `Ctrl+Shift+O` (Windows/Linux) to inspect source location
+3. **Press** `Cmd+Shift+O` (Mac) or `Alt+Shift+O` (Windows/Linux) to inspect source location
 4. **Press** `Cmd+Shift+L` (Mac) or `Ctrl+Shift+L` (Windows/Linux) to **toggle the overlay on/off**
 
 When source information is found, a **modal popup** will appear with:
