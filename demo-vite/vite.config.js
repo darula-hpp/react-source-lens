@@ -7,7 +7,6 @@ export default defineConfig({
     react({
       babel: {
         plugins: [
-          // Use our local babel plugin
           'react-source-lens/babel-plugin'
         ],
         presets: [
