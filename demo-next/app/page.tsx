@@ -29,7 +29,7 @@ export default function Home() {
           <h2 className="text-xl font-semibold text-blue-900 mb-2">Instructions</h2>
           <ul className="text-blue-800 space-y-1">
             <li>• Hover over any component (like the cards or buttons above)</li>
-            <li>• Press <kbd className="px-1 py-0.5 bg-blue-200 rounded text-xs">Cmd+Shift+O</kbd> (Mac) or <kbd className="px-1 py-0.5 bg-blue-200 rounded text-xs">Ctrl+Shift+O</kbd> (Windows/Linux)</li>
+            <li>• Press <kbd className="px-1 py-0.5 bg-blue-200 rounded text-xs">Cmd+Shift+O</kbd> (Mac) or <kbd className="px-1 py-0.5 bg-blue-200 rounded text-xs">Alt+Shift+O</kbd> (Windows/Linux)</li>
             <li>• A modal will appear with file location and VS Code integration</li>
           </ul>
         </div>
